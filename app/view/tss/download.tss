@@ -1,0 +1,116 @@
+@import "styles.tss";
+main { content: template("../templates/download.html"); }
+
+[data-gettext] {
+    content: __();
+}
+
+menu {
+    content: data(menu);
+    content-mode: replace;
+    format: html;
+}
+
+footer {
+    content: data(footer);
+    content-mode: replace;
+    format: html;
+}
+
+title[data-gettext="true"] {
+    content: data(meta.title);
+}
+
+meta[name="description"]:attr(content) {
+    content: data(meta.desc);
+}
+
+p[data-gettext-id="download-os"] {
+    content: __sprintf(data(release.supported_os));
+}
+
+h2[data-gettext-id="stable-release-name"] {
+    content: __sprintf(data(release.version));
+}
+
+p[data-gettext-id="stable-release-date"] {
+    content: __sprintf(data(release.release_date));
+}
+
+a[data-gettext-id="changelog-btn"]:attr(href) {
+    content: path("release-note");
+}
+
+a[id="link1"]:attr(href) {
+    content: data(release.download_link.installer[0]);
+}
+
+a[id="link2"]:attr(href) {
+    content: data(release.download_link.installer[1]);
+}
+
+a[id="link3"]:attr(href) {
+    content: data(release.download_link.installer[2]);
+}
+
+a[id="plink1"]:attr(href) {
+    content: data(release.download_link.portable[0]);
+}
+
+div[id="stable-disable-msg"][data(release.download_link.available)="1"],
+section[id="stable-download"][data(release.download_link.available)="0"]{
+    display :  none;
+}
+
+p[data-gettext-id="beta-version"] {
+    content: __sprintf(data(beta.version));
+}
+
+p[data-gettext-id="beta-release-date"] {
+    content: __sprintf(data(beta.release_date));
+}
+
+p[data-gettext-id="beta-supported-os"] {
+    content: __sprintf(data(beta.supported_os));
+}
+
+p[data-gettext-id="beta-msg"] {
+    content: data(beta.message);
+}
+
+p[data-gettext-id="patch-version"]{
+    content: __sprintf(data(patch.version));
+}
+
+a[data-gettext-id="patch-link"]:attr(href){
+    content: data(patch.download_link.installer[0]);
+}
+
+a[data-gettext-id="beta-link"]:attr(href){
+    content: data(beta.download_link.installer[0]);
+}
+
+div[data-gettext-id="space-no-beta"][data(beta.download_link.available)="1"],
+div[data-gettext-id="space-no-beta"][data(beta.name)=""],
+div[id="beta"][data(beta.name)=""],
+div[id="beta"][data(beta.download_link.available)="0"],
+p[data-gettext-id="beta-msg"][data(beta.message)=""]{
+    display: none;
+}
+
+
+a[data-gettext-id="help-link"]:attr(href){
+    content: path("help");
+}
+
+a[data-gettext-id="addon-link"]:attr(href){
+    content: path("addon").home;
+}
+
+a[data-gettext-id="forum-link"]:attr(href){
+    content: path("forum");
+}
+
+a[data-gettext-id="donation-link"]:attr(href){
+    content: path("donation-link");
+}

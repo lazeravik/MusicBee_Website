@@ -1,0 +1,50 @@
+#Custom Status Error page
+#ErrorDocument 404 /app/pages/error/404.php
+
+#URL rewriter
+AddDefaultCharset UTF-8
+Options +FollowSymlinks
+RewriteEngine On
+
+#do not perform rewrite in the following directory
+RewriteRule ^sqlbuddy - [L,NC] #only for dev purpose
+RewriteRule ^forum - [L,NC]
+
+RewriteBase /app/
+
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?param=$1 [NC]
+
+
+# browser requests PHP
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /([^\ ]+)\.php
+RewriteRule ^/?(.*)\.php$ /$1 [QSA,L,R=301]
+
+# check to see if the request is for a PHP file:
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^/?(.*)$ /$1.php [QSA,L]
+
+##if the requested file is not valid then add a .php extension and look for it and load it
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteRule ^([^/]+)/$ $1.php
+#RewriteCond %{REQUEST_URI} !(\.[a-zA-Z0-9]{1,5}|/)$
+#RewriteRule (.*)$ /$1/ [R=301,L]
+#
+##if the url have addon in it and have 1 or 2 query then fireup this custom rewrite
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule ^addons/([A-Яа-я0-9-]+)/([\w]+)/(.*?)/$    addons.php?type=$1&id=$2&title=$3 [L,NE]
+#RewriteRule ^addons/([A-Яа-я0-9-]+)/(.*?)/$    addons.php?id=$1&title=$2 [L,NE]
+#RewriteRule ^addons/([A-Яа-я0-9-]+)/$    addons.php?id=$1 [L,NE]
+#RewriteRule ^help/([\w-]+)/$    help.php?$1 [L]
+#RewriteRule ^api/([\w.]+)/$    api.get.php?v=$1 [L]
+#
+##old website to new website link redirect
+#Redirect 301 /download.html /downloads
+#Redirect 301 /help.html /help/faq
+#Redirect 301 /release_notes.html /help/release-note
+#Redirect 301 /features.html /#simple_powerful
+

@@ -1,0 +1,12 @@
+link[id="maincss"]:attr(href) {
+    content: path("style-dir"), "mb_main.css?"
+}
+
+link[id="font-awesome"]:attr(href) {
+    content: path("style-dir"), "font-awesome-bower/font-awesome.css?4.7.0"
+}
+
+
+link[rel="shortcut icon"]:attr(href) {
+    content: append_path(href, "root");
+}

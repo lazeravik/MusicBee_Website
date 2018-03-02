@@ -1,0 +1,39 @@
+@import "styles.tss";
+main { content: template("../templates/home.html"); }
+
+
+[data-gettext] {
+content: __();
+}
+
+menu {
+content: data(menu);
+content-mode: replace;
+format: html;
+}
+
+footer {
+content: data(footer);
+content-mode: replace;
+format: html;
+}
+
+p[data-gettext-id="download-os"] {
+content: __sprintf(data(release.supported_os));
+}
+
+a[data-gettext-id="download-btn"]:attr(href){
+content: path("download");
+}
+
+h4[data-gettext-id="hero-text"]{
+content: __();
+format: html;
+}
+
+
+img[data-url="http"]:attr(src) {
+content: append_path(src, "img-dir");
+}
+
+
