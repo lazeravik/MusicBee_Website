@@ -10,10 +10,10 @@ Going forward new features, bug fixes will be added to this repo only.
  Copyright under Creative Commons Attribution-ShareAlike 3.0 Unported, for details visit: https://creativecommons.org/licenses/by-sa/3.0/
  
  
- =====
+
  
  
- ##Credits
+ ## Credits
  
  AvikB (Maintainer and Developer of this project)
  
